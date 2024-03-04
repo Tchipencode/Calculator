@@ -12,15 +12,16 @@ let deleteButton=document.querySelector(".delete");
 numbers.forEach(function(btn){
    btn.addEventListener("click", function(e){
       if(!currentOperator){
-         firstNumber=this.value;
+         firstNumber+=this.value;
       }
       else{
-         lastNumber=this.value;
+         lastNumber+=this.value;
       } 
       
       display.value+=this.value;
    });
 });
+//console.log(typeof Number(numbers.this.value));
 operators.forEach(function(op){
    op.addEventListener("click", function(){
       if(this.value==="+"){
@@ -39,45 +40,63 @@ operators.forEach(function(op){
          currentOperator=this.value;
          display.value+=this.value;
       }
+      if(currentOperator && lastNumber==="0"){
+         currentOperator=""
+      }
    });
 });
 
-clearButton.addEventListener("click", function(){
+equalButton.addEventListener("click", function(){
+   if(currentOperator){
+      currentOperation=operate(firstNumber, currentOperator, lastNumber);
+      clearScreen();
+      display.value=currentOperation;
+      
+      //firstNumber=display.value;
+      //lastNumber="";
+   }
+})
+
+function clearScreen(){
    firstNumber="";
    lastNumber="";
    currentOperator=null;
    display.value="";
-})
-equalButton.addEventListener("click", function(){
-   if(currentOperator){
-      display.value+=operate(firstNumber, currentOperator, lastNumber);
-      firstNumber=display.value;
-      lastNumber="";
-   }
-})
+   display.value="";
+}
+
+clearButton.addEventListener("click", clearScreen);
+
 deleteButton.addEventListener("click", function(){
-   display.value-=numbers.value.slice("");
-})
+   let del=display.value;
+   if(del.length<2){
+      clearScreen();
+   }
+   else{
+      del=del.substring(0, del.length -1);
+      display.value=del;
+   }
+});
 
 //Addition
 function add(firstNumber, lastNumber){
-   return firstNumber+lastNumber;
+   return parseFloat(firstNumber)+parseFloat(lastNumber);
 }
 console.log(add(firstNumber, lastNumber));
 
 //Subtraction
 function subtract(firstNumber, lastNumber){
-   return firstNumber-lastNumber;
+   return parseFloat(firstNumber)-parseFloat(lastNumber);
 }
 
 //Multiplication
 function multiply(firstNumber, lastNumber){
-   return firstNumber*lastNumber;
+   return parseFloat(firstNumber)*parseFloat(lastNumber);
 }
 
 //Division
 function divide(firstNumber, lastNumber){
-   return firstNumber/lastNumber;
+   return parseFloat(firstNumber)/parseFloat(lastNumber);
 }
 
 //Create operate function

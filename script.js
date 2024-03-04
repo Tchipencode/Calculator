@@ -3,46 +3,56 @@ let lastNumber=0;
 let currentOperator=null;
 let currentOperation=null;
 let result=0;
-let display=document.querySelector(".userInput");
-let numbers=document.querySelectorAll(".keypad");
+let display=document.querySelector(".display");
+let numbers=document.querySelectorAll(".num");
 let operators=document.querySelectorAll(".operator");
 let equalButton=document.querySelector(".equal");
 let clearButton=document.querySelector(".clear");
 let deleteButton=document.querySelector(".delete");
+
+//when click on a number
 numbers.forEach(function(btn){
    btn.addEventListener("click", function(e){
       if(!currentOperator){
-         firstNumber+=this.value;
+         firstNumber+=e.target.textContent;
       }
       else{
-         lastNumber+=this.value;
+         lastNumber+=e.target.textContent;
       } 
       
-      display.value+=this.value;
+      display.textContent+=e.target.textContent;
    });
 });
-//console.log(typeof Number(numbers.this.value));
+
+//when click on an operator
 operators.forEach(function(op){
-   op.addEventListener("click", function(){
-      if(this.value==="+"){
-         currentOperator=this.value;
-         display.value+=this.value;  
+   op.addEventListener("click", function(e){
+      if(e.target.textContent==="+"){
+         currentOperator=e.target.textContent;
+         display.textContent+=e.target.textContent;  
       } 
-      else if(this.value==="-"){
-         currentOperator=this.value;
-         display.value+=this.value;
+      else if(e.target.textContent==="-"){
+         currentOperator=e.target.textContent;
+         display.textContent+=e.target.textContent;
       }
-      else if(this.value==="x"){
-         currentOperator=this.value;
-         display.value+=this.value;
+      else if(e.target.textContent==="x"){
+         currentOperator=e.target.textContent;
+         display.textContent+=e.target.textContent;
       }
-      else if(this.value==="/"){
-         currentOperator=this.value;
-         display.value+=this.value;
+      else if(e.target.textContent==="÷"){
+         currentOperator=e.target.textContent;
+         display.textContent+=e.target.textContent;
       }
-      if(currentOperator && lastNumber==="0"){
-         currentOperator=""
+      else if(e.target.textContent==="%"){
+         currentOperator=e.target.textContent;
+         display.textContent+=e.target.textContent;
       }
+      /*if(currentOperator!==null){
+ 
+         clearScreen()
+         currentOperator=thiydisplay.textContent;
+         display.textContent+=thiydisplay.textContent;
+      }*/
    });
 });
 
@@ -50,10 +60,7 @@ equalButton.addEventListener("click", function(){
    if(currentOperator){
       currentOperation=operate(firstNumber, currentOperator, lastNumber);
       clearScreen();
-      display.value=currentOperation;
-      
-      //firstNumber=display.value;
-      //lastNumber="";
+      display.textContent=currentOperation;
    }
 })
 
@@ -61,20 +68,20 @@ function clearScreen(){
    firstNumber="";
    lastNumber="";
    currentOperator=null;
-   display.value="";
-   display.value="";
+   display.textContent="";
+   display.textContent="";
 }
 
 clearButton.addEventListener("click", clearScreen);
 
 deleteButton.addEventListener("click", function(){
-   let del=display.value;
+   let del=display.textContent;
    if(del.length<2){
       clearScreen();
    }
    else{
       del=del.substring(0, del.length -1);
-      display.value=del;
+      display.textContent=del;
    }
 });
 
@@ -99,6 +106,11 @@ function divide(firstNumber, lastNumber){
    return parseFloat(firstNumber)/parseFloat(lastNumber);
 }
 
+//Percentage
+function percentage(firstNumber){
+   return parseFloat(firstNumber)/100;
+}
+
 //Create operate function
 function operate(firstNumber, currentOperator, lastNumber){
    switch(currentOperator){
@@ -114,9 +126,10 @@ function operate(firstNumber, currentOperator, lastNumber){
       case "/":
          result=divide(firstNumber, lastNumber);
          break;
+      case"%":
+      result=percentage(firstNumber);
    }
    return result;
-   //console.log(currentOperation);
 }
-//console.log(operate(firstNumber, currentOperator, lastNumber));
+
 

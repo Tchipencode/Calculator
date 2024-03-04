@@ -9,35 +9,34 @@
     </head>
     <body>
       <div class="container">
-         <div class="display">
-            <input type="text" class="userInput">
-         </div>
+         <div class="display"></div>
          <div class="keyboard">
-            <div class="digit">
-               
-               <input type="button" value="9" class="keypad">
-               <input type="button" value="8" class="keypad">
-               <input type="button" value="7" class="keypad">
-               <input type="button" value="6" class="keypad">
-               <input type="button" value="5" class="keypad">
-               <input type="button" value="4" class="keypad">
-               <input type="button" value="3" class="keypad">
-               <input type="button" value="2" class="keypad">
-               <input type="button" value="1" class="keypad">
-               <input type="button" value="." class="keypad">
-               <input type="button" value="0" class="keypad">
-               
+            <div class="digit-first-row">
+               <button class="clear" id="C">C</button>
+               <button class="operator" id="/">÷</button>
+               <button class="operator" id="x">x</button>
+               <button class="delete" id="del">del</button>
             </div>
-            <div class="operator">
-               <input type="button"  value="+" class="operator">
-               <input type="button" value="-" class="operator">
-               <input type="button" value="x" class="operator">
-               <input type="button" value="/" class="operator">
-               <input type="button" value="%" class="operator">
-               <input type="button" value="=" class="equal">
-               <input type="button" value="C" class="clear">
-               <input type="button" value="del" class="delete">
-
+            <div class="digitNum">
+               <button class="num" id="9">9</button>
+               <button class="num" id="8">8</button>
+               <button class="num" id="7">7</button>
+               <button class="num" id="6">6</button>
+               <button class="num" id="5">5</button>
+               <button class="num" id="4">4</button>
+               <button class="num" id="3">3</button>
+               <button class="num" id="2">2</button>
+               <button class="num" id="1">1</button>                           
+            </div>
+            <div class="digit-second-row">
+               <button class="operator" id="%">%</button>
+               <button class="num" id="0">0</button>
+               <button class="num" id=".">.</button>
+            </div>
+            <div class="operatorRow">
+               <button class="operator" id="-">-</button>
+               <button class="operator" id="+">+</button>
+               <button class="equal" id="=">=</button>
             </div>
 
          </div>

@@ -1,47 +1,87 @@
 body{
    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
 }
 .container{
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
-   width: 400px;
-   height: 600px;
+   width: 350px;
+   height: 500px;
    border: 2px solid blue;
-   border-radius: 5px;
+   border-radius: 10px;
+   padding: 5px;
 
 }
-#userInput{
-
-   border: 1px solid black;
-   width: 200px;
-   height: 40px;
-
+.display{
+   display: flex;
+   justify-content: right;
+   align-items: center;
+   min-height: 80px;
+   width: 330px;
+   background-color: azure;
+   border: 2px solid black;
+   border-radius: 5px;
+   padding: 10px;
+   margin: 30px;
+   font-size: 30px;
 }
 .keyboard{
-   display: grid;
-   grid-template-areas: "a ."
-                        ". b";
-   grid-auto-flow: row;
-
-
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+   /*flex-wrap: wrap;*/
+   margin: 10px;
+   max-height: 420px;
+   cursor: pointer;
+  
 }
-.digit{
-   /*display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   grid-auto-flow: row;
-   gap: 5px;
-   direction: rtl;*/
+.digit-row{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   width: 200px;
 }
-.operator{
-   /*display:grid;
-   grid-template-columns: auto;*/
-
+.digit-num{
+   display:flex;
+   flex-direction: row-reverse;
+   justify-content: space-between;
+   align-items: center;  
+   flex-wrap: wrap;
+   width: 150px;
 }
-#number{
-   width: 30px;
-   height: 30px;
+.digit-column{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 50px;
+   height: 200px; 
+}
+button{
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: center;
+   width: 60px;
+   height: 60px;
    border: 1px solid black;
-   border-radius: 2px;
+   border-radius: 5px;
    background-color: aquamarine;
+}
+.equal{
+   flex: 1;
+}
+.num, .operator, .equal, .delete, .clear{
+   font-size: 35px;
+}
+.num{
+   background-color: aliceblue;
+}
+.operator, .equal, .delete, .clear{
+   background-color: brown;
 }
